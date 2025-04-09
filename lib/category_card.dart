@@ -25,7 +25,7 @@ class _CategoryCardState extends State<CategoryCard> {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Text(
             widget.title,
-            style: TextStyle(fontSize: widget.isMobile ? 8 : 12),
+            style: TextStyle(fontSize: widget.isMobile ? 8 : 12,), //widget.title !=null ? Theme.of(context).colorScheme.primary: Colors.grey,
             textAlign: TextAlign.center,
           ),
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/hero_page.dart';
+import 'package:vlt_africa/mentorship_responsive_grid.dart';
 import 'package:vlt_africa/responsive_grid.dart';
 
 class Homepage extends StatefulWidget {
@@ -89,6 +91,21 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 3;
+                      });
+                    },
+                    child: Text(
+                      'Mentorship',
+                      style: TextStyle(
+                        color: _selectedIndex == 3
+                            ? Theme.of(context).colorScheme.primary
+                            : Colors.grey,
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 20),
                   IconButton(
                     icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
@@ -104,6 +121,8 @@ class _HomepageState extends State<Homepage> {
                       // TODO: Implement profile navigation
                     },
                   ),
+
+                  SizedBox(width: 10),
                 ]
               : [],
         ),
@@ -132,140 +151,15 @@ class _HomepageState extends State<Homepage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Hero Section
+                  if(_selectedIndex ==0)
                   HeroPage(isMobile: isMobile),
-
+                   if(_selectedIndex ==1)
                   // Categories Section
                   ResponsiveGrid(isMobile: isMobile),
-
-                  // Featured Courses Section
-                  Padding(
-                    padding: EdgeInsets.all(isMobile ? 16 : 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Featured E-book Courses',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        // SizedBox(
-                        //   height: isMobile ? 250 : 300,
-                        //   child: ListView(
-                        //     scrollDirection: Axis.horizontal,
-                        //     children: [
-                        //       CorporateCover(isDarkMode: isDarkMode),
-                        //       const SizedBox(width: 20),
-                        //       CorporateCover(isDarkMode: isDarkMode),
-                        //       const SizedBox(width: 20),
-                        //       CorporateCover(isDarkMode: isDarkMode),
-                        //     ],
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ),
-
+                  
                   // Popular Courses Section
-                  Padding(
-                    padding: EdgeInsets.all(isMobile ? 16 : 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Popular Mentorship Courses',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        isMobile
-                            ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return Card(
-                                    margin: const EdgeInsets.only(bottom: 10),
-                                    child: ListTile(
-                                      leading:
-                                          const Icon(Icons.play_circle_outline),
-                                      title: Text('Course ${index + 1}'),
-                                      subtitle:
-                                          const Text('Beginner to Advanced'),
-                                      trailing:
-                                          const Icon(Icons.arrow_forward_ios),
-                                      onTap: () {
-                                        // TODO: Navigate to course details
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            : GridView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 20,
-                                  mainAxisSpacing: 20,
-                                  childAspectRatio: 1.5,
-                                ),
-                                itemCount: 6,
-                                itemBuilder: (context, index) {
-                                  return Card(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary
-                                                  .withOpacity(0.1),
-                                              borderRadius:
-                                                  const BorderRadius.vertical(
-                                                top: Radius.circular(4),
-                                              ),
-                                            ),
-                                            child: const Center(
-                                              child: Icon(
-                                                  Icons.play_circle_outline,
-                                                  size: 40),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Course ${index + 1}',
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              const Text(
-                                                  'Beginner to Advanced'),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                      ],
-                    ),
-                  ),
+                  if (_selectedIndex==3)
+                 MentorshipResponsiveGrid(isMobile: isMobile)
                 ],
               ),
             ),
@@ -278,7 +172,7 @@ class _HomepageState extends State<Homepage> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+           DrawerHeader(
             decoration: BoxDecoration(
                 // gradient: LinearGradient(
                 //   begin: Alignment.topLeft,
@@ -290,7 +184,7 @@ class _HomepageState extends State<Homepage> {
               textAlign: TextAlign.center,
               'VLT AFRICA',
               style: TextStyle(
-                color: Colors.white,
+                color: CustomHexColors.fromHex('#d3efe9'),
                 fontSize: 24,
               ),
             ),
@@ -324,6 +218,17 @@ class _HomepageState extends State<Homepage> {
             onTap: () {
               setState(() {
                 _selectedIndex = 2;
+              });
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.follow_the_signs),
+            title: const Text('Mentorship'),
+            selected: _selectedIndex == 3,
+            onTap: () {
+              setState(() {
+                _selectedIndex = 3;
               });
               Navigator.pop(context);
             },
