@@ -3,7 +3,8 @@ import 'package:vlt_africa/model.dart';
 
 class MentorshipResponsiveGrid extends StatefulWidget {
   final bool isMobile;
-  const MentorshipResponsiveGrid({super.key, required this.isMobile});
+  final String title;
+  const MentorshipResponsiveGrid({super.key, required this.isMobile, required this.title});
 
   @override
   State<MentorshipResponsiveGrid> createState() => _MentorshipResponsiveGridState();
@@ -31,14 +32,6 @@ class _MentorshipResponsiveGridState extends State<MentorshipResponsiveGrid> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Popular Mentorship Courses',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
                         widget.isMobile
                             ? ListView.builder(
                                 shrinkWrap: true,
@@ -52,7 +45,7 @@ class _MentorshipResponsiveGridState extends State<MentorshipResponsiveGrid> {
                                           const Icon(Icons.play_circle_outline),
                                       title: Text('Course ${index + 1}'),
                                       subtitle:
-                                          const Text('Beginner to Advanced'),
+                                         Text(widget.title),//'Beginner to Advanced'
                                       trailing:
                                           const Icon(Icons.arrow_forward_ios),
                                       onTap: () {
@@ -110,8 +103,8 @@ class _MentorshipResponsiveGridState extends State<MentorshipResponsiveGrid> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              const Text(
-                                                  'Beginner to Advanced'),
+                                               Text(
+                                                  widget.title),
                                             ],
                                           ),
                                         ),

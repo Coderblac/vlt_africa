@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'VLT Academy',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: CustomHexColors.fromHex('#19715c'),
+          seedColor: Colors.white,
           brightness: Brightness.light,
         ),
         useMaterial3: true,

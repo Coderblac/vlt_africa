@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/botton.dart';
+import 'package:vlt_africa/dashboard.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/hero_page.dart';
-import 'package:vlt_africa/mentorship_responsive_grid.dart';
-import 'package:vlt_africa/responsive_grid.dart';
+import 'package:vlt_africa/how_vlt_works.dart';
+import 'package:vlt_africa/learn_page.dart';
+import 'package:vlt_africa/why_choose_vlt.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -43,7 +46,7 @@ class _HomepageState extends State<Homepage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('VLT Academy'),
+          title: const Text('VLT BUSINESS ACADEMY'),
           actions: !isMobile
               ? [
                   TextButton(
@@ -91,37 +94,31 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = 3;
-                      });
-                    },
-                    child: Text(
-                      'Mentorship',
-                      style: TextStyle(
-                        color: _selectedIndex == 3
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.grey,
-                      ),
-                    ),
-                  ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     setState(() {
+                  //       _selectedIndex = 3;
+                  //     });
+                  //   },
+                  //   child: Text(
+                  //     'Dashboard',
+                  //     style: TextStyle(
+                  //       color: _selectedIndex == 3
+                  //           ? Theme.of(context).colorScheme.primary
+                  //           : Colors.grey,
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(width: 20),
-                  IconButton(
-                    icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
-                    onPressed: () {
-                      setState(() {
-                        isDarkMode = !isDarkMode;
-                      });
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.person),
-                    onPressed: () {
-                      // TODO: Implement profile navigation
-                    },
-                  ),
-
+                  HelperButton(onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context)
+                   =>Dashboard(isMobile: isMobile)));
+                  }, title: 'Member Login', btnColor: Colors.white, titleColor: Colors.black),
+                  SizedBox(width: 10),
+                  HelperButton(onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)
+                    =>Dashboard(isMobile: isMobile)));
+                  }, title: 'Get Started', btnColor: Colors.amber, titleColor: Colors.black),
                   SizedBox(width: 10),
                 ]
               : [],
@@ -151,15 +148,16 @@ class _HomepageState extends State<Homepage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Hero Section
-                  if(_selectedIndex ==0)
-                  HeroPage(isMobile: isMobile),
-                   if(_selectedIndex ==1)
-                  // Categories Section
-                  ResponsiveGrid(isMobile: isMobile),
+                  if (_selectedIndex == 0) Column(
+                    children: [
+                      HeroPage(isMobile: isMobile),
+                      SizedBox(height: 80),
+                      HowVltWorks(isMobile: isMobile),
+                      WhyChooseVlt(isMobile: isMobile)
+                    ],
+                  ),
                   
-                  // Popular Courses Section
-                  if (_selectedIndex==3)
-                 MentorshipResponsiveGrid(isMobile: isMobile)
+                  
                 ],
               ),
             ),
@@ -172,7 +170,7 @@ class _HomepageState extends State<Homepage> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-           DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
                 // gradient: LinearGradient(
                 //   begin: Alignment.topLeft,
@@ -222,36 +220,22 @@ class _HomepageState extends State<Homepage> {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.follow_the_signs),
-            title: const Text('Mentorship'),
-            selected: _selectedIndex == 3,
-            onTap: () {
-              setState(() {
-                _selectedIndex = 3;
-              });
-              Navigator.pop(context);
-            },
-          ),
           const Divider(),
-          ListTile(
-            leading: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
-            title: Text(isDarkMode ? 'Light Mode' : 'Dark Mode'),
-            onTap: () {
-              setState(() {
-                isDarkMode = !isDarkMode;
-              });
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
+            child: HelperButton(onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context)
+                     =>Dashboard(isMobile: isMobile)));
+                    }, title: 'Member Login', btnColor: Colors.white, titleColor: Colors.black),
           ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              // TODO: Navigate to profile
-              Navigator.pop(context);
-            },
-          ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
+                    child: HelperButton(onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)
+                      =>Dashboard(isMobile: isMobile)));
+                    }, title: 'Get Started', btnColor: Colors.amber, titleColor: Colors.black),
+                  ),
+
         ],
       ),
     );
