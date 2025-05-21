@@ -37,7 +37,7 @@ class _CoursesListState extends State<CoursesList> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 1.0,
+            childAspectRatio: 1,
           ),
           itemCount: widget.courses.length,
           itemBuilder: (context, index) {
