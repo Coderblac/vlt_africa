@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vlt_africa/dashboard.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/homepage.dart';
 import 'package:vlt_africa/register_page.dart';

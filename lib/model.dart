@@ -1,28 +1,46 @@
-import 'package:flutter/material.dart';
-
 class CategoryModel {
   final String title;
-  // final IconData icon;
 
   CategoryModel({
-    // required this.icon,
     required this.title
   });
   
 }
 
-class EbookModel {
-  // final int id;
+class Chapter {
+  final int id;
+  final String title;
+  final String duration;
+  final String videoUrl;
+  final bool isCompleted;
+
+  Chapter({
+    required this.id,
+    required this.title,
+    required this.duration,
+    required this.videoUrl,
+    this.isCompleted = false,
+  });
+}
+
+class VideoCourseModel {
+  final int id;
   final String title;
   final String subtitle;
   final String imageUrl;
-  final CategoryModel category;
+  final String category;
+  final List<Chapter> chapters;
+  final String totalDuration;
+  final int totalChapters;
 
-  EbookModel({
-  //  required this.id,
-   required this.title,
-   required this.subtitle,
-   required this.imageUrl,
-   required this.category
+  VideoCourseModel({
+    required this.id,
+    required this.title,
+    required this.subtitle,
+    required this.imageUrl,
+    required this.category,
+    required this.chapters,
+    required this.totalDuration,
+    required this.totalChapters,
   });
 }

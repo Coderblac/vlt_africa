@@ -6,6 +6,7 @@ import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/hero_page.dart';
 import 'package:vlt_africa/how_vlt_works.dart';
 import 'package:vlt_africa/login_page.dart';
+import 'package:vlt_africa/model.dart';
 import 'package:vlt_africa/register_page.dart';
 import 'package:vlt_africa/why_choose_vlt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,6 +65,33 @@ class _HomepageState extends State<Homepage> {
     super.dispose();
   }
 
+    final List<CategoryModel> categories = [
+    CategoryModel(
+      title: 'Programming',
+    ),
+    CategoryModel(
+      title: 'Design',
+    ),
+    CategoryModel(
+      title: 'Business',
+    ),
+    CategoryModel(
+      title: 'Marketing',
+    ),
+    CategoryModel(
+      title: 'Programming',
+    ),
+    CategoryModel(
+      title: 'Design',
+    ),
+    CategoryModel(
+      title: 'Business',
+    ),
+    CategoryModel(
+      title: 'Marketing',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     // Check screen size
@@ -92,9 +120,10 @@ class _HomepageState extends State<Homepage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      setState(() {
-                        _selectedIndex = 1;
-                      });
+                     Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CoursesPage(isMobile: isMobile, categories: categories,)));
                     },
                     child: Text(
                       'Courses',
@@ -103,9 +132,14 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Dashboard(isMobile: isMobile)));
+                    },
                     child: Text(
-                      'Saved',
+                      'Dashboard',
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.primary),
                     ),
@@ -203,25 +237,20 @@ class _HomepageState extends State<Homepage> {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            selected: _selectedIndex == 0,
             onTap: () {
-              setState(() {
-                _selectedIndex = 0;
-              });
               Navigator.pop(context);
             },
           ),
           ListTile(
             leading: const Icon(Icons.school),
             title: const Text('Courses'),
-            selected: _selectedIndex == 1,
             onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => CoursesPage(
                             isMobile: isMobile,
-                            categories: [],
+                            categories: categories,
                           )));
             },
           ),
