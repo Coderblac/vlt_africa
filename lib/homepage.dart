@@ -206,7 +206,7 @@ class _HomepageState extends State<Homepage> {
                     Column(
                       children: [
                         HeroPage(isMobile: isMobile),
-                        SizedBox(height: 80),
+                        // SizedBox(height: 80),
                         HowVltWorks(isMobile: isMobile),
                         WhyChooseVlt(isMobile: isMobile)
                       ],
