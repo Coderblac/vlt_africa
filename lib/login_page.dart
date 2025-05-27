@@ -3,10 +3,11 @@ import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/homepage.dart';
 import 'package:vlt_africa/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vlt_africa/responsive.dart';
 
 class LoginPage extends StatefulWidget {
-  final bool isMobile;
-  const LoginPage({super.key, required this.isMobile});
+
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               maxWidth: 600,
             ),
             child: Padding(
-              padding: widget.isMobile
+              padding: Responsive.isMobile(context)
                   ? const EdgeInsets.all(50.0)
                   : EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.1,
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(context,
                         MaterialPageRoute(builder: (context)
-                        =>RegisterPage(isMobile: widget.isMobile)));
+                        =>RegisterPage()));
                       },
                       child: const Text(
                         'Don\'t have an account? Register',

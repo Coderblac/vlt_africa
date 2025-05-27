@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:vlt_africa/courses_list.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/model.dart';
+import 'package:vlt_africa/responsive.dart';
 
 class CoursesPage extends StatefulWidget {
-  final List<CategoryModel> categories;
-  final bool isMobile;
-  const CoursesPage({super.key, required this.categories, required this.isMobile});
+  const CoursesPage({super.key});
 
   @override
   State<CoursesPage> createState() => _CoursesPageState();
@@ -15,6 +14,32 @@ class CoursesPage extends StatefulWidget {
 
 class _CoursesPageState extends State<CoursesPage> {
   final ScrollController _scrollController = ScrollController();
+      final List<CategoryModel> categories = [
+    CategoryModel(
+      title: 'Programming',
+    ),
+    CategoryModel(
+      title: 'Design',
+    ),
+    CategoryModel(
+      title: 'Business',
+    ),
+    CategoryModel(
+      title: 'Marketing',
+    ),
+    CategoryModel(
+      title: 'Programming',
+    ),
+    CategoryModel(
+      title: 'Design',
+    ),
+    CategoryModel(
+      title: 'Business',
+    ),
+    CategoryModel(
+      title: 'Marketing',
+    ),
+  ];
   
   final List<VideoCourseModel> courses = [
     VideoCourseModel(
@@ -227,9 +252,9 @@ class _CoursesPageState extends State<CoursesPage> {
                   controller: _scrollController,
                   padding: EdgeInsets.symmetric(horizontal: 5),
                   scrollDirection: Axis.horizontal,
-                  itemCount: widget.categories.length,
+                  itemCount: categories.length,
                   itemBuilder: (context, index){
-                    final category = widget.categories[index];
+                    final category = categories[index];
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: ElevatedButton(
@@ -246,14 +271,13 @@ class _CoursesPageState extends State<CoursesPage> {
           ),
           Expanded(
             child: Padding(
-              padding: widget.isMobile
+              padding: Responsive.isMobile(context)
                   ? const EdgeInsets.all(16.0)
                   : EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.05,
                       vertical: 32,
                     ),
               child: CoursesList(
-                isMobile: widget.isMobile,
                 courses: courses,
               ),
             ),

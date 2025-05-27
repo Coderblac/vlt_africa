@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/login_page.dart';
+import 'package:vlt_africa/responsive.dart';
 
 class RegisterPage extends StatefulWidget {
-  final bool isMobile;
-  const RegisterPage({super.key, required this.isMobile});
+
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -40,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
               maxWidth: 600,
             ),
             child: Padding(
-              padding: widget.isMobile
+              padding: Responsive.isMobile(context)
                   ? const EdgeInsets.all(50.0)
                   : EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.1,
@@ -204,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             Navigator.push(context,
                         MaterialPageRoute(builder: (context)
-                        =>LoginPage(isMobile: widget.isMobile)));
+                        =>LoginPage()));
                           },
                           child: const Text(
                             'Already have an account? Login',

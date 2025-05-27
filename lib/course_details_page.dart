@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/responsive.dart';
 import 'model.dart';
 import 'paystack_payment_page.dart';
 import 'services/payment_service.dart';
 
 class CourseDetailsPage extends StatefulWidget {
   final VideoCourseModel course;
-  final bool isMobile;
 
   const CourseDetailsPage({
     super.key,
     required this.course,
-    required this.isMobile,
   });
 
   @override
@@ -82,7 +81,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               child: Stack(
                 children: [
                   AspectRatio(
-                    aspectRatio: widget.isMobile ? 16 / 9 : 21 / 9,
+                    aspectRatio: Responsive.isMobile(context) ? 16 / 9 : 21 / 9,
                     child: Container(
                       color: Colors.black,
                       child: _isSubscribed

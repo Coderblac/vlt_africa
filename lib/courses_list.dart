@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/responsive.dart';
 import 'model.dart';
 import 'course_details_page.dart';
 
 class CoursesList extends StatefulWidget {
-  final bool isMobile;
   final List<VideoCourseModel> courses;
   
   const CoursesList({
     super.key, 
-    required this.isMobile,
     required this.courses,
   });
 
@@ -22,7 +21,7 @@ class _CoursesListState extends State<CoursesList> {
     final width = MediaQuery.of(context).size.width;
     final crossAxisCount = width > 1200 ? 4 : width > 800 ? 3 : 2;
 
-    return widget.isMobile 
+    return Responsive.isMobile(context)
       ? ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           physics: const ScrollPhysics(),
@@ -54,7 +53,6 @@ class _CoursesListState extends State<CoursesList> {
           MaterialPageRoute(
             builder: (context) => CourseDetailsPage(
               course: course,
-              isMobile: widget.isMobile,
             ),
           ),
         );
@@ -108,7 +106,7 @@ class _CoursesListState extends State<CoursesList> {
                     course.title,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: widget.isMobile ? 14 : 16,
+                      fontSize: Responsive.isMobile(context) ? 14 : 16,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 1,
@@ -118,7 +116,7 @@ class _CoursesListState extends State<CoursesList> {
                   Text(
                     course.subtitle,
                     style: TextStyle(
-                      fontSize: widget.isMobile ? 12 : 14,
+                      fontSize: Responsive.isMobile(context) ? 12 : 14,
                       color: Colors.grey[600],
                     ),
                     maxLines: 1,
@@ -133,7 +131,7 @@ class _CoursesListState extends State<CoursesList> {
                       Text(
                         '${course.totalChapters} chapters',
                         style: TextStyle(
-                          fontSize: widget.isMobile ? 12 : 14,
+                          fontSize: Responsive.isMobile(context) ? 12 : 14,
                           color: Colors.grey[600],
                         ),
                       ),
@@ -156,7 +154,6 @@ class _CoursesListState extends State<CoursesList> {
           MaterialPageRoute(
             builder: (context) => CourseDetailsPage(
               course: course,
-              isMobile: widget.isMobile,
             ),
           ),
         );

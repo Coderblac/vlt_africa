@@ -3,8 +3,8 @@ import 'package:vlt_africa/header_text.dart';
 import 'package:vlt_africa/helper.dart';
 
 class HowVltWorks extends StatelessWidget {
-  final bool isMobile;
-  const HowVltWorks({super.key, required this.isMobile});
+  // final bool isMobile;
+  const HowVltWorks({super.key, });//required this.isMobile
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +18,13 @@ class HowVltWorks extends StatelessWidget {
               child: HeaderText(
                   headerText: 'How VLT Africa Works',
                   headerTextColor: Colors.black,
-                  isMobile: isMobile),
+                  ),//isMobile: isMobile
             ),
-            !isMobile
-                ? Wrap(
+            // !isMobile
+            //     ? 
+                Wrap(
+                    spacing: 20,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      _buildHowItWorksCard(
-                          title: 'Join VLT Africa',
-                          subTitle:
-                              'Get instant access to proven digital wealth system that gives you access to earnwhile you learn'),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                        child: _buildHowItWorksCard(
-                            title: 'Leverage our tools',
-                            subTitle:
-                                'usr our system training and mentorship to start earning fast, even if you\'re a total beginner'),
-                      ),
-                      _buildHowItWorksCard(
-                          title: 'Earn and Scale',
-                          subTitle:
-                              'Every time you help someone tap into the system you get paid over and over again')
-                    ],
-                  )
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildHowItWorksCard(
                           title: 'Join VLT Africa',
@@ -66,8 +48,8 @@ class HowVltWorks extends StatelessWidget {
   Widget _buildHowItWorksCard(
       {required String title, required String subTitle}) {
     return Card(
-      elevation: 5,
-      color: Colors.white,
+      elevation: 1,
+      color: CustomHexColors.fromHex('#d3efe9').withOpacity(0.5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: SizedBox(
         width: 200,

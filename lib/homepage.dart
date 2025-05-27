@@ -8,6 +8,7 @@ import 'package:vlt_africa/how_vlt_works.dart';
 import 'package:vlt_africa/login_page.dart';
 import 'package:vlt_africa/model.dart';
 import 'package:vlt_africa/register_page.dart';
+import 'package:vlt_africa/responsive.dart';
 import 'package:vlt_africa/why_choose_vlt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -123,7 +124,7 @@ class _HomepageState extends State<Homepage> {
                      Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CoursesPage(isMobile: isMobile, categories: categories,)));
+                      builder: (context) => CoursesPage()));
                     },
                     child: Text(
                       'Courses',
@@ -136,7 +137,7 @@ class _HomepageState extends State<Homepage> {
                       Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Dashboard(isMobile: isMobile)));
+                      builder: (context) => Dashboard()));
                     },
                     child: Text(
                       'Dashboard',
@@ -154,7 +155,7 @@ class _HomepageState extends State<Homepage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      LoginPage(isMobile: isMobile)));
+                                      LoginPage()));
                         }
                       },
                       title: isLoggedIn ? 'Logout' : 'Member Login',
@@ -168,7 +169,7 @@ class _HomepageState extends State<Homepage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      RegisterPage(isMobile: isMobile)));
+                                      RegisterPage()));
                         },
                         title: 'Get Started',
                         btnColor: Colors.amber,
@@ -205,10 +206,10 @@ class _HomepageState extends State<Homepage> {
                   if (_selectedIndex == 0)
                     Column(
                       children: [
-                        HeroPage(isMobile: isMobile),
+                        HeroPage(isMobile: Responsive.isMobile(context),),//isMobile: isMobile
                         // SizedBox(height: 80),
-                        HowVltWorks(isMobile: isMobile),
-                        WhyChooseVlt(isMobile: isMobile)
+                        HowVltWorks(),//isMobile: isMobile
+                        WhyChooseVlt()
                       ],
                     ),
                 ],
@@ -249,8 +250,6 @@ class _HomepageState extends State<Homepage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => CoursesPage(
-                            isMobile: isMobile,
-                            categories: categories,
                           )));
             },
           ),
@@ -261,7 +260,7 @@ class _HomepageState extends State<Homepage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Dashboard(isMobile: isMobile)));
+                      builder: (context) => Dashboard()));
             },
           ),
           const Divider(),
@@ -276,7 +275,7 @@ class _HomepageState extends State<Homepage> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                LoginPage(isMobile: isMobile)));
+                                LoginPage()));
                   }
                 },
                 title: isLoggedIn ? 'Logout' : 'Member Login',
@@ -291,7 +290,7 @@ class _HomepageState extends State<Homepage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RegisterPage(isMobile: isMobile)));
+                          builder: (context) => RegisterPage()));
                 },
                 title: 'Get Started',
                 btnColor: Colors.amber,

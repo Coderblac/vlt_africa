@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vlt_africa/helper.dart';
+import 'package:vlt_africa/responsive.dart';
 
 class Dashboard extends StatefulWidget {
-  final bool isMobile;
   const Dashboard({
-    super.key,
-    required this.isMobile,
+    super.key
   });
 
   @override
@@ -88,10 +87,10 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
               SizedBox(
-                height: widget.isMobile ? 280 : 450,
+                height: Responsive.isMobile(context) ? 280 : 450,
                 child: Card(
                   color: Colors.white,
-                  margin: widget.isMobile ? EdgeInsets.all(20) : EdgeInsets.all(40),
+                  margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   elevation: 1,
@@ -153,7 +152,7 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-                        _buildFreeLearning(isMobile: widget.isMobile),
+                        _buildFreeLearning(isMobile: Responsive.isMobile(context)),
                       ],
                     ),
                   ),
@@ -181,26 +180,26 @@ class _DashboardState extends State<Dashboard> {
         ),
         itemCount: 3,
         itemBuilder: (context, index) {
-          return _buildLearningVideoCard(isMobile: widget.isMobile);
+          return _buildLearningVideoCard();
         },
       ),
     );
   }
 
-  Widget _buildLearningVideoCard({required bool isMobile}) {
+  Widget _buildLearningVideoCard() {
     return Column(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(5),
           child: Container(
-            height: widget.isMobile ? 80 : 200,
+            height: Responsive.isMobile(context) ? 80 : 200,
             width: 350,
             color: Colors.black,
             child: Icon(Icons.play_circle),
           ),
         ),
         SizedBox(
-          height: widget.isMobile ? 40 : 200,
+          height: Responsive.isMobile(context) ? 40 : 200,
           width: 350,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,7 +209,7 @@ class _DashboardState extends State<Dashboard> {
                 'Course',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: isMobile ? 12 : 16,
+                  fontSize: Responsive.isMobile(context) ? 12 : 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -218,7 +217,7 @@ class _DashboardState extends State<Dashboard> {
                 textAlign: TextAlign.left,
                 '1h 10 min',
                 style: TextStyle(
-                  fontSize: isMobile ? 10 : 14,
+                  fontSize: Responsive.isMobile(context) ? 10 : 14,
                   color: Colors.grey,
                 ),
               ),
@@ -232,7 +231,7 @@ class _DashboardState extends State<Dashboard> {
   Widget _buildMembersFeedBack() {
     return Card(
       color: CustomHexColors.fromHex('#2a3935'),
-      margin: widget.isMobile ? EdgeInsets.all(20) : EdgeInsets.all(40),
+      margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
@@ -293,10 +292,10 @@ class _DashboardState extends State<Dashboard> {
 
   Widget _buildUpdates(){
     return  SizedBox(
-            // height: widget.isMobile ? 280 : 450,
+            // height: Responsive.isMobile(context) ? 280 : 450,
             child: Card(
               color: Colors.white,
-              margin: widget.isMobile ? EdgeInsets.all(20) : EdgeInsets.all(40),
+              margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               elevation: 1,
@@ -359,10 +358,10 @@ class _DashboardState extends State<Dashboard> {
 
     Widget _buildHelpAndSupport(){
     return  SizedBox(
-            // height: widget.isMobile ? 280 : 450,
+            // height: Responsive.isMobile(context) ? 280 : 450,
             child: Card(
               color: Colors.white,
-              margin: widget.isMobile ? EdgeInsets.all(20) : EdgeInsets.all(40),
+              margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               elevation: 1,
