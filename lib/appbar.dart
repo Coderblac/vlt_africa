@@ -46,6 +46,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     );
                   },
                 ),
+                SizedBox(width: 10),
                 HelperButton(
                         onTap: () {
                           Navigator.push(

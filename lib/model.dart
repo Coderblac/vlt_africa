@@ -31,6 +31,7 @@ class VideoCourseModel {
   final String category;
   final List<Chapter> chapters;
   final String totalDuration;
+  final List<Comments>?comments;
   final int totalChapters;
 
   VideoCourseModel({
@@ -42,5 +43,18 @@ class VideoCourseModel {
     required this.chapters,
     required this.totalDuration,
     required this.totalChapters,
+    this.comments, 
   });
+}
+class Comments{
+  final String comment;
+  final String userName;
+  final String? userImageUrl;
+
+  Comments({
+    required this.comment,
+    required this.userName,
+    this.userImageUrl,
+  });
+
 }

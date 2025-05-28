@@ -70,6 +70,10 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "1:01:30",
       totalChapters: 3,
+      comments: [
+        Comments(comment: 'Crazy stuff', userName: 'Barry Allen', userImageUrl: 'https://picsum.photos/200/300'),
+        Comments(comment: 'I love this course', userName: 'Clark Kent', userImageUrl: 'https://picsum.photos/200/301'),
+      ],
     ),
     VideoCourseModel(
       id: 2,
@@ -99,6 +103,7 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "2:15:00",
       totalChapters: 3,
+      comments: [],
     ),
     VideoCourseModel(
       id: 3,
@@ -128,6 +133,7 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "2:20:00",
       totalChapters: 3,
+      comments: [],
     ),
     VideoCourseModel(
       id: 4,
@@ -157,6 +163,7 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "2:05:00",
       totalChapters: 3,
+      comments: [],
     ),
     VideoCourseModel(
       id: 5,
@@ -186,6 +193,7 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "2:40:00",
       totalChapters: 3,
+      comments: [],
     ),
     VideoCourseModel(
       id: 6,
@@ -215,6 +223,7 @@ class _CoursesPageState extends State<CoursesPage> {
       ],
       totalDuration: "2:05:00",
       totalChapters: 3,
+      comments: [],
     ),
   ];
 
@@ -231,10 +240,11 @@ class _CoursesPageState extends State<CoursesPage> {
      child: Column(
           children: [
             // Courses Category
+            if(!Responsive.isMobile(context))
             Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(16),
-              color: CustomHexColors.fromHex('#2a3935'),
+              color: CustomHexColors.fromHex('#19715c'),
               child: Text(
                 textAlign: TextAlign.center,
                 'Courses',
@@ -271,18 +281,10 @@ class _CoursesPageState extends State<CoursesPage> {
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: Responsive.isMobile(context)
-                    ? const EdgeInsets.all(16.0)
-                    : EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.05,
-                        vertical: 32,
-                      ),
-                child: CoursesList(
-                  courses: courses,
-                ),
-              ),
+            child: CoursesList(
+              courses: courses,
             ),
+            )
           ],
      
       ),

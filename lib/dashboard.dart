@@ -40,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('VLT MEMBERSHIP DASHBOARD',
+        title: Text('DASHBOARD',
         style: TextStyle(
           fontSize: Responsive.isMobile(context)
           ? 16 : 18
@@ -64,11 +64,10 @@ class _DashboardState extends State<Dashboard> {
           controller: _scrollController,
           child: Column(
             children: [
-              SizedBox(height: 20),
               _buildMembersFeedBack(),
               SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: EdgeInsets.symmetric(horizontal:Responsive.isMobile(context)? 16: 40.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: SizedBox(
@@ -104,7 +103,7 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     flex: Responsive.isDesktop(context)? 2 : 3,
                     child: SizedBox(
-                height: Responsive.isMobile(context) ? 280 : 1000,
+                height: Responsive.isMobile(context) ? 1000 : 1000,
                 child: Container(
                   color: Colors.white.withOpacity(0.5),
 
@@ -115,7 +114,9 @@ class _DashboardState extends State<Dashboard> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
-                          child: Row(
+                          child: 
+                        
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
@@ -167,12 +168,15 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                         // _buildFreeLearning(isMobile: Responsive.isMobile(context)),
+                        
                         CoursesPage()
                       ],
                     ),
                   ),
                 ),
               ),),
+
+              if(!Responsive.isMobile(context)&&!Responsive.isTablet(context))
                     Expanded(
                       flex: 1,
                       child: Column(
@@ -192,72 +196,12 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  Widget _buildFreeLearning({required bool isMobile}) {
-    return Expanded(
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: isMobile ? 1 * 0.1 : 1 * 0.1,
-        ),
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return _buildLearningVideoCard();
-        },
-      ),
-    );
-  }
-
-  Widget _buildLearningVideoCard() {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: Container(
-            height: Responsive.isMobile(context) ? 80 : 200,
-            width: 350,
-            color: Colors.black,
-            child: Icon(Icons.play_circle),
-          ),
-        ),
-        SizedBox(
-          height: Responsive.isMobile(context) ? 40 : 200,
-          width: 350,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                textAlign: TextAlign.left,
-                'Course',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: Responsive.isMobile(context) ? 12 : 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                textAlign: TextAlign.left,
-                '1h 10 min',
-                style: TextStyle(
-                  fontSize: Responsive.isMobile(context) ? 10 : 14,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _buildMembersFeedBack() {
     return Container(
       color: CustomHexColors.fromHex('#19715c'),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: Responsive.isMobile(context)? 10: 40),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -316,7 +260,7 @@ class _DashboardState extends State<Dashboard> {
             // height: Responsive.isMobile(context) ? 280 : 450,
             child: Card(
               color: Colors.white,
-              margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
+              margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.symmetric(horizontal: 40),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               elevation: 1,

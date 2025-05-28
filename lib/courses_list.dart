@@ -16,10 +16,12 @@ class CoursesList extends StatefulWidget {
 }
 
 class _CoursesListState extends State<CoursesList> {
+List <VideoCourseModel> get courses => widget.courses;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final crossAxisCount = width > 1200 ? 4 : width > 800 ? 3 : 2;
+    final crossAxisCount = Responsive.isDesktop(context) ? 3 : width <= 1024 ? 2 : 2;
 
     return Responsive.isMobile(context)
       ? ListView.builder(
@@ -30,19 +32,20 @@ class _CoursesListState extends State<CoursesList> {
             return _buildLearningVideoCardMobileView(widget.courses[index]);
           },
         )
-      : GridView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: .6,
-          ),
-          itemCount: widget.courses.length,
-          itemBuilder: (context, index) {
-            return _buildLearningVideoCard(widget.courses[index]);
-          },
-        );
+      : Wrap(
+        children: [
+          for (int i = 0; i < widget.courses.length; i += crossAxisCount)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (int j = 0; j < crossAxisCount && (i + j) < widget.courses.length; j++)
+                  Expanded(
+                    child: _buildLearningVideoCard(widget.courses[i + j]),
+                  ),
+              ],
+            ),
+        ],
+      );
   }
 
   Widget _buildLearningVideoCard(VideoCourseModel course) {
@@ -63,6 +66,7 @@ class _CoursesListState extends State<CoursesList> {
           borderRadius: BorderRadius.circular(0),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
@@ -76,7 +80,7 @@ class _CoursesListState extends State<CoursesList> {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        height: 200,
+                        height: Responsive.isDesktop(context)? 300 : 200,
                         color: Colors.black,
                         child: const Icon(Icons.play_circle, color: Colors.white, size: 40),
                       );
@@ -161,7 +165,7 @@ class _CoursesListState extends State<CoursesList> {
           ),
         );
       },
-      child: Card(
+      child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         child: Padding(
           padding: const EdgeInsets.all(8.0),

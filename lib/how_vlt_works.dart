@@ -43,6 +43,14 @@ class HowVltWorks extends StatelessWidget {
                           title: 'Earn and Scale',
                           subTitle:
                               'Every time you help someone tap into the system you get paid over and over again'),
+                              
+                              if(Responsive.isDesktop(context))
+                                Column(
+                                  children: [
+                                    SizedBox(height: 40),
+                                    WhatYouGet(),
+                                  ],
+                                )
                     ],
                   ),
             SizedBox(height: 40),

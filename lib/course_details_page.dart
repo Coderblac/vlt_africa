@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/comments.dart';
+import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/responsive.dart';
 import 'model.dart';
 import 'paystack_payment_page.dart';
@@ -6,6 +8,7 @@ import 'services/payment_service.dart';
 
 class CourseDetailsPage extends StatefulWidget {
   final VideoCourseModel course;
+
 
   const CourseDetailsPage({
     super.key,
@@ -18,7 +21,6 @@ class CourseDetailsPage extends StatefulWidget {
 
 class _CourseDetailsPageState extends State<CourseDetailsPage> {
   bool _isSubscribed = false;
-  bool _isFullscreen = false;
 
   @override
   void initState() {
@@ -50,97 +52,86 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     }
   }
 
-  void _toggleFullscreen() {
-    setState(() {
-      _isFullscreen = !_isFullscreen;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.course.title),
-        backgroundColor: const Color(0xFF2a3935),
+        title: Text(
+          widget.course.title,
+          style: TextStyle(
+            fontSize: Responsive.isMobile(context) ? 14 : 20,
+          ),
+        ),
+        backgroundColor: CustomHexColors.fromHex('#19715c'),
         foregroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             // Video Player Section
-            Container(
-              constraints: BoxConstraints(
-                maxWidth: _isFullscreen ? double.infinity : 800,
-                maxHeight: _isFullscreen ? MediaQuery.of(context).size.height * 0.8 : 450,
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: _isFullscreen ? 0 : 16,
-                vertical: _isFullscreen ? 0 : 16,
-              ),
+            Center(
               child: Stack(
                 children: [
                   Center(
-                    child: AspectRatio(
-                      aspectRatio: Responsive.isMobile(context) ? 16 / 9 : 21 / 9,
-                      child: Container(
-                        color: Colors.black,
-                        child: _isSubscribed
-                            ? Stack(
-                                children: [
-                                  const Center(
-                                    child: Icon(
-                                      Icons.play_circle_outline,
-                                      color: Colors.white,
-                                      size: 60,
-                                    ),
+                    child: Container(
+                      height: Responsive.isMobile(context)
+                          ? MediaQuery.of(context).size.height * 0.25
+                          : 450,
+                      width:
+                          Responsive.isMobile(context) ? double.infinity : 800,
+                      color: Colors.black,
+                      child: _isSubscribed
+                          ? Stack(
+                              children: [
+                                const Center(
+                                  child: Icon(
+                                    Icons.play_circle_outline,
+                                    color: Colors.white,
+                                    size: 60,
                                   ),
-                                  Positioned(
-                                    bottom: 16,
-                                    right: 16,
-                                    child: IconButton(
-                                      icon: Icon(
-                                        _isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                        color: Colors.white,
-                                        size: 28,
+                                ),
+                              ],
+                            )
+                          : Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // const Icon(
+                                  //   Icons.lock,
+                                  //   color: Colors.white,
+                                  //   size: 40,
+                                  // ),
+                                  const SizedBox(height: 16),
+                                  ElevatedButton(
+                                    onPressed: _handlePayment,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          CustomHexColors.fromHex('#19715c'),
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 24,
+                                        vertical: 12,
                                       ),
-                                      onPressed: _toggleFullscreen,
                                     ),
+                                    child: const Text('Subscribe to Access'),
                                   ),
                                 ],
-                              )
-                            : Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.lock,
-                                      color: Colors.white,
-                                      size: 40,
-                                    ),
-                                    const SizedBox(height: 16),
-                                    ElevatedButton(
-                                      onPressed: _handlePayment,
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF2a3935),
-                                        foregroundColor: Colors.white,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 24,
-                                          vertical: 12,
-                                        ),
-                                      ),
-                                      child: const Text('Subscribe to Access'),
-                                    ),
-                                  ],
-                                ),
                               ),
-                      ),
+                            ),
                     ),
                   ),
                 ],
               ),
             ),
-            
+
             // Course Info Section
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -186,6 +177,21 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       ),
                     ],
                   ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: (){
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) =>
+                    CommentsSection(course: widget.course)));
+                  }, child: Text('View Comments')),
                 ],
               ),
             ),
@@ -238,7 +244,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           chapter.isCompleted
                               ? Icons.check_circle
                               : Icons.play_circle_outline,
-                          color: chapter.isCompleted ? Colors.green : Colors.grey,
+                          color:
+                              chapter.isCompleted ? Colors.green : Colors.grey,
                         )
                       : const Icon(
                           Icons.lock,
@@ -257,4 +264,4 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       ),
     );
   }
-} 
+}

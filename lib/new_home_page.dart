@@ -62,8 +62,7 @@ class NewHomePage extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 20),
                                   child: HowVltWorks(),
                                 ),
-                                if(Responsive.isDesktop(context))
-                                WhatYouGet()
+                                
                               ],
                             ),
                           ),

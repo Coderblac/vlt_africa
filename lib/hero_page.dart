@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:vlt_africa/helper.dart';
+import 'package:vlt_africa/hero_page_video_card.dart';
 import 'package:vlt_africa/responsive.dart';
 // import 'package:flutter/foundation.dart' show kIsWeb;
 // import 'dart:ui' as ui;
@@ -28,11 +29,14 @@ class _HeroPageState extends State<HeroPage> {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: Responsive.isMobile(context)
-          ? MediaQuery.of(context).size.height * 0.45
-          : 350,
+          ? MediaQuery.of(context).size.height * 0.65
+          : 650,
       child: Stack(children: [
         Image.asset(
           width: MediaQuery.of(context).size.width,
+          height: Responsive.isMobile(context)
+              ? MediaQuery.of(context).size.height * 0.65
+              : 650,
           'assets/bgimages/hero_bg.jpeg',
           fit: BoxFit.cover,
         )
@@ -99,7 +103,10 @@ class _HeroPageState extends State<HeroPage> {
                           color: Colors.amber.withOpacity(0.9),
                           fontStyle: FontStyle.italic),
                     ),
-                    SizedBox(height: 35),
+                    SizedBox(height: 16),
+                    // video card
+                    HeroPageVideoCard(),
+                    SizedBox(height: 16),
                     Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(

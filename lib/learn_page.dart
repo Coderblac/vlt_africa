@@ -22,20 +22,14 @@ class _LearningPageState extends State<LearningPage> {
             height: 250,
             width: 400,
           ),
-          Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(onPressed: (){}, child:
-              Text('Overview')),
-              SizedBox(width: 20),
-              TextButton(onPressed: (){}, child:
-              Text('Lessons')),
-              SizedBox(width: 20),
-              TextButton(onPressed: (){}, child:
-              Text('Reviews')),
-            ],
-          ),
+          TextButton(onPressed: (){}, child:
+          Text('Overview')),
+          SizedBox(width: 20),
+          TextButton(onPressed: (){}, child:
+          Text('Lessons')),
+          SizedBox(width: 20),
+          TextButton(onPressed: (){}, child:
+          Text('Reviews')),
           Divider(),
         ],
       ),
