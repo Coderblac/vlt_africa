@@ -48,56 +48,48 @@ class _CommentsSectionState extends State<CommentsSection> {
       ),
       body:
       widget.course.comments!.isNotEmpty?
-       Align(
-          alignment: Alignment.center,
-         child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: Responsive.isMobile(context)? MediaQuery.of(context).size.width * 0.95: MediaQuery.of(context).size.width * 0.6,
-            ),
-           child: Expanded(
-             child: ListView.builder(
-               itemCount: widget.course.comments!.length,
-               itemBuilder: (context, index) {
-                 final comment = widget.course.comments![index];
-                 return ListTile(
-                   leading: CircleAvatar(
-                     backgroundImage: comment.userImageUrl != null
-                         ? NetworkImage(comment.userImageUrl!)
-                         : const AssetImage('assets/logo/logo.jpeg')
-                             as ImageProvider,
-                   ),
-                   title: Text(
-                     comment.userName,
-                     style: const TextStyle(fontWeight: FontWeight.bold),
-                   ),
-                   subtitle: Text(
-                     comment.comment,
-                     style: const TextStyle(fontWeight: FontWeight.bold),
-                   ),
-                 );
-               },
-             ),
-           ),
-         ),
-       )
-      :Center(
-            child: Text('No Comments Yet',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
+       GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+         child: Align(
+            alignment: Alignment.center,
+           child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: Responsive.isMobile(context)? MediaQuery.of(context).size.width * 0.95: MediaQuery.of(context).size.width * 0.6,
               ),
-            ),
-          ),
-          bottomNavigationBar: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: Responsive.isMobile(context)? MediaQuery.of(context).size.width * 0.95: MediaQuery.of(context).size.width * 0.6,
-            ),
-            child: SafeArea(
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
+             child: Column(
+               children: [
+                 SizedBox(
+                  height: MediaQuery.of(context).size.height*0.85,
+                   child: ListView.builder(
+                     itemCount: widget.course.comments!.length,
+                     itemBuilder: (context, index) {
+                       final comment = widget.course.comments![index];
+                       return ListTile(
+                         leading: CircleAvatar(
+                           backgroundImage: comment.userImageUrl != null
+                               ? NetworkImage(comment.userImageUrl!)
+                               : const AssetImage('assets/logo/logo.jpeg')
+                                   as ImageProvider,
+                         ),
+                         title: Text(
+                           comment.userName,
+                           style: const TextStyle(fontWeight: FontWeight.bold),
+                         ),
+                         subtitle: Text(
+                           comment.comment,
+                           style: const TextStyle(fontWeight: FontWeight.bold),
+                         ),
+                       );
+                     },
+                   ),
+                 ),
+                 ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: Responsive.isMobile(context)? MediaQuery.of(context).size.width * 0.95: MediaQuery.of(context).size.width * 0.6,
+              ),
+              child: SafeArea(
                     child: Row(
                       children: [
                         Expanded(
@@ -143,8 +135,21 @@ class _CommentsSectionState extends State<CommentsSection> {
                       ],
                     ),
                   ),
-                ),
+            ),
+               ],
+             ),
+           ),
+         ),
+       )
+      :Center(
+            child: Text('No Comments Yet',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[600],
+              ),
+            ),
           ),
+          bottomNavigationBar: null
     );
   }
 }
