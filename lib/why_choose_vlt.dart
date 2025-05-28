@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:vlt_africa/header_text.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/responsive.dart';
-import 'package:vlt_africa/what_you_get.dart';
+
 
 class WhyChooseVlt extends StatelessWidget {
   const WhyChooseVlt({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: MediaQuery.of(context).size.width,
-        color: Colors.grey.shade50,
         child: Column(
           children: [
             Padding(
@@ -108,7 +107,7 @@ class WhyChooseVlt extends StatelessWidget {
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: SizedBox(
-          width: 500,
+          // width: 500,
           height: 50,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),

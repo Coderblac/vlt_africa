@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vlt_africa/courses_page.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/responsive.dart';
 
@@ -39,8 +40,16 @@ class _DashboardState extends State<Dashboard> {
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('VLT MEMBERSHIP DASHBOARD'),
-        leading: SizedBox.shrink(),
+        title: Text('VLT MEMBERSHIP DASHBOARD',
+        style: TextStyle(
+          fontSize: Responsive.isMobile(context)
+          ? 16 : 18
+        ),),
+        leading: Image.asset(
+          'assets/logo/logo_v1.jpeg',
+          width: 100,
+          fit: BoxFit.cover,
+        ),
       ),
       body: GestureDetector(
         onPanStart: (details) {
@@ -55,7 +64,9 @@ class _DashboardState extends State<Dashboard> {
           controller: _scrollController,
           child: Column(
             children: [
+              SizedBox(height: 20),
               _buildMembersFeedBack(),
+              SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: Align(
@@ -66,9 +77,9 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: CustomHexColors.fromHex(
-                              '#2a3935'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
+                              '#19715c'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
                           foregroundColor: Theme.of(context).colorScheme.secondary,
-                          side: BorderSide(),
+                          side: BorderSide.none,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
                       child: Row(
@@ -86,14 +97,17 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Responsive.isMobile(context) ? 280 : 450,
-                child: Card(
-                  color: Colors.white,
-                  margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  elevation: 1,
+              SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: Responsive.isDesktop(context)? 2 : 3,
+                    child: SizedBox(
+                height: Responsive.isMobile(context) ? 280 : 1000,
+                child: Container(
+                  color: Colors.white.withOpacity(0.5),
+
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(
@@ -112,7 +126,7 @@ class _DashboardState extends State<Dashboard> {
                                       Icon(
                                         Icons.school,
                                         size: 35,
-                                        color: CustomHexColors.fromHex('#2a3935'),
+                                        color: CustomHexColors.fromHex('#19715c'),
                                       ),
                                       SizedBox(width: 10),
                                       Text(
@@ -137,9 +151,9 @@ class _DashboardState extends State<Dashboard> {
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: CustomHexColors.fromHex(
-                                        '#2a3935'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
+                                        '#19715c'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
                                     foregroundColor: Colors.black,
-                                    side: BorderSide(),
+                                    side: BorderSide.none,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5))),
                                 child: Text(
@@ -152,14 +166,25 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-                        _buildFreeLearning(isMobile: Responsive.isMobile(context)),
+                        // _buildFreeLearning(isMobile: Responsive.isMobile(context)),
+                        CoursesPage()
                       ],
                     ),
                   ),
                 ),
-              ),
+              ),),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: [
+                                        
                _buildUpdates(),
                _buildHelpAndSupport(),
+                        ],
+                      ))
+                ],
+              ),
+
             ],
           ),
         ),
@@ -229,12 +254,8 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Widget _buildMembersFeedBack() {
-    return Card(
-      color: CustomHexColors.fromHex('#2a3935'),
-      margin: Responsive.isMobile(context) ? EdgeInsets.all(20) : EdgeInsets.all(40),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
-      ),
+    return Container(
+      color: CustomHexColors.fromHex('#19715c'),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 40),
         child: Row(
@@ -251,7 +272,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     child: Icon(
                       Icons.badge,
-                      color: CustomHexColors.fromHex('#2a3935'),
+                      color: CustomHexColors.fromHex('#19715c'),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -317,7 +338,7 @@ class _DashboardState extends State<Dashboard> {
                                   Icon(
                                     Icons.update,
                                     size: 35,
-                                    color: CustomHexColors.fromHex('#2a3935'),
+                                    color: CustomHexColors.fromHex('#19715c'),
                                   ),
                                   SizedBox(width: 10),
                                   Text(
@@ -346,7 +367,7 @@ class _DashboardState extends State<Dashboard> {
                     child: Text(
                               'View All Updates',
                               style: TextStyle(
-                                  color:CustomHexColors.fromHex('#2a3935'),
+                                  color:CustomHexColors.fromHex('#19715c'),
                                   fontWeight: FontWeight.w500),
                             ),)
                   ],
@@ -383,7 +404,7 @@ class _DashboardState extends State<Dashboard> {
                                   Icon(
                                     Icons.help_center,
                                     size: 35,
-                                    color: CustomHexColors.fromHex('#2a3935'),
+                                    color: CustomHexColors.fromHex('#19715c'),
                                   ),
                                   SizedBox(width: 10),
                                   Text(
@@ -413,7 +434,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: CustomHexColors.fromHex(
-                              '#2a3935'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
+                              '#19715c'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#19715c'),
                           foregroundColor: Theme.of(context).colorScheme.secondary,
                           // side: BorderSide(),
                           shape: RoundedRectangleBorder(
@@ -438,7 +459,7 @@ class _DashboardState extends State<Dashboard> {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: CustomHexColors.fromHex(
-                              '#2a3935'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
+                              '#19715c'), //Theme.of(context).colorScheme.primary, //CustomHexColors.fromHex('#2a3935'),
                           foregroundColor: Theme.of(context).colorScheme.secondary,
                           // side: BorderSide(),
                           shape: RoundedRectangleBorder(

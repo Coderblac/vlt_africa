@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vlt_africa/header_text.dart';
 import 'package:vlt_africa/helper.dart';
+import 'package:vlt_africa/responsive.dart';
+import 'package:vlt_africa/what_you_get.dart';
 
 class HowVltWorks extends StatelessWidget {
   // final bool isMobile;
@@ -27,17 +29,20 @@ class HowVltWorks extends StatelessWidget {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       _buildHowItWorksCard(
+                        icon: Icons.person_outline,
                           title: 'Join VLT Africa',
                           subTitle:
                               'Get instant access to proven digital wealth system that gives you access to earnwhile you learn'),
                       _buildHowItWorksCard(
+                          icon: Icons.monetization_on_outlined,
                           title: 'Leverage our tools',
                           subTitle:
                               'usr our system training and mentorship to start earning fast, even if you\'re a total beginner'),
                       _buildHowItWorksCard(
+                        icon: Icons.group_outlined,
                           title: 'Earn and Scale',
                           subTitle:
-                              'Every time you help someone tap into the system you get paid over and over again')
+                              'Every time you help someone tap into the system you get paid over and over again'),
                     ],
                   ),
             SizedBox(height: 40),
@@ -46,7 +51,7 @@ class HowVltWorks extends StatelessWidget {
   }
 
   Widget _buildHowItWorksCard(
-      {required String title, required String subTitle}) {
+      {required String title, required String subTitle, required IconData icon}) {
     return Card(
       elevation: 1,
       color: CustomHexColors.fromHex('#d3efe9').withOpacity(0.5),
@@ -66,7 +71,7 @@ class HowVltWorks extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: CustomHexColors.fromHex('#2a3935').withOpacity(0.6)),
                 child: Icon(
-                  Icons.person_outline,
+                  icon,
                   color: Colors.amber,
                 ),
               ),

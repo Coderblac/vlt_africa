@@ -226,64 +226,66 @@ class _CoursesPageState extends State<CoursesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          // Courses Category
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.all(16),
-            color: CustomHexColors.fromHex('#2a3935'),
-            child: Text(
-              textAlign: TextAlign.center,
-              'Courses',
-              style: TextStyle(color: Colors.white,
-              fontSize: 18),),
-          ),
-          SizedBox(
-            height: 85,
-            child: Scrollbar(
-              thickness: 8,
-              controller: _scrollController,
-              thumbVisibility: true,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16, top: 16),
-                child: ListView.builder(
-                  controller: _scrollController,
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (context, index){
-                    final category = categories[index];
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                        ),
-                        onPressed: (){},
-                        child: Text(category.title)),
-                    );
-                  }
-                  ),
-              ),
+    return 
+   Expanded(
+     child: Column(
+          children: [
+            // Courses Category
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.all(16),
+              color: CustomHexColors.fromHex('#2a3935'),
+              child: Text(
+                textAlign: TextAlign.center,
+                'Courses',
+                style: TextStyle(color: Colors.white,
+                fontSize: 18),),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: Responsive.isMobile(context)
-                  ? const EdgeInsets.all(16.0)
-                  : EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.05,
-                      vertical: 32,
+            SizedBox(
+              height: 85,
+              child: Scrollbar(
+                thickness: 8,
+                controller: _scrollController,
+                thumbVisibility: true,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16, top: 16),
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    itemBuilder: (context, index){
+                      final category = categories[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                          ),
+                          onPressed: (){},
+                          child: Text(category.title)),
+                      );
+                    }
                     ),
-              child: CoursesList(
-                courses: courses,
+                ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: Responsive.isMobile(context)
+                    ? const EdgeInsets.all(16.0)
+                    : EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.05,
+                        vertical: 32,
+                      ),
+                child: CoursesList(
+                  courses: courses,
+                ),
+              ),
+            ),
+          ],
+     
       ),
-    );
+   );
   }
 }

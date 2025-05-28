@@ -154,7 +154,7 @@ class _AutoScrollingListViewState extends State<_AutoScrollingListView> {
     while (mounted) {
       await Future.delayed(_pauseDuration);
       if (!mounted) break;
-      _currentIndex = (_currentIndex + 1) % widget.itemCount;
+      _currentIndex = (_currentIndex + 2) % widget.itemCount;
       _controller.animateTo(
         _currentIndex * 220.0, // Adjust item width as needed
         duration: _scrollDuration,

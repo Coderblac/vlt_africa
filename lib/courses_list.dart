@@ -36,7 +36,7 @@ class _CoursesListState extends State<CoursesList> {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 1,
+            childAspectRatio: .6,
           ),
           itemCount: widget.courses.length,
           itemBuilder: (context, index) {
@@ -59,6 +59,9 @@ class _CoursesListState extends State<CoursesList> {
       },
       child: Card(
         elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

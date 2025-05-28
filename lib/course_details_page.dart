@@ -80,59 +80,61 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               ),
               child: Stack(
                 children: [
-                  AspectRatio(
-                    aspectRatio: Responsive.isMobile(context) ? 16 / 9 : 21 / 9,
-                    child: Container(
-                      color: Colors.black,
-                      child: _isSubscribed
-                          ? Stack(
-                              children: [
-                                const Center(
-                                  child: Icon(
-                                    Icons.play_circle_outline,
-                                    color: Colors.white,
-                                    size: 60,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 16,
-                                  right: 16,
-                                  child: IconButton(
-                                    icon: Icon(
-                                      _isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
-                                      color: Colors.white,
-                                      size: 28,
-                                    ),
-                                    onPressed: _toggleFullscreen,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                  Center(
+                    child: AspectRatio(
+                      aspectRatio: Responsive.isMobile(context) ? 16 / 9 : 21 / 9,
+                      child: Container(
+                        color: Colors.black,
+                        child: _isSubscribed
+                            ? Stack(
                                 children: [
-                                  const Icon(
-                                    Icons.lock,
-                                    color: Colors.white,
-                                    size: 40,
-                                  ),
-                                  const SizedBox(height: 16),
-                                  ElevatedButton(
-                                    onPressed: _handlePayment,
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF2a3935),
-                                      foregroundColor: Colors.white,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 24,
-                                        vertical: 12,
-                                      ),
+                                  const Center(
+                                    child: Icon(
+                                      Icons.play_circle_outline,
+                                      color: Colors.white,
+                                      size: 60,
                                     ),
-                                    child: const Text('Subscribe to Access'),
+                                  ),
+                                  Positioned(
+                                    bottom: 16,
+                                    right: 16,
+                                    child: IconButton(
+                                      icon: Icon(
+                                        _isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen,
+                                        color: Colors.white,
+                                        size: 28,
+                                      ),
+                                      onPressed: _toggleFullscreen,
+                                    ),
                                   ),
                                 ],
+                              )
+                            : Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(
+                                      Icons.lock,
+                                      color: Colors.white,
+                                      size: 40,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    ElevatedButton(
+                                      onPressed: _handlePayment,
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color(0xFF2a3935),
+                                        foregroundColor: Colors.white,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 24,
+                                          vertical: 12,
+                                        ),
+                                      ),
+                                      child: const Text('Subscribe to Access'),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
+                      ),
                     ),
                   ),
                 ],

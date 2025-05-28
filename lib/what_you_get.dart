@@ -36,7 +36,7 @@ class WhatYouGet extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
-                        fontSize: 20
+                        fontSize: Responsive.isMobile(context) ? 16 : 20,
                       ),),
                     ),
                     Container(
@@ -78,11 +78,16 @@ class WhatYouGet extends StatelessWidget {
           Icon(CupertinoIcons.check_mark,
           color: Colors.amber),
           SizedBox(width: 10),
-          Text(title,
-          style: TextStyle(
-            fontSize: Responsive.isMobile(context)? 12 : 16,
-            color: Colors.black
-          ),)
+          SizedBox(
+            width: Responsive.isMobile(context)? 200:250,
+            child: Text(
+              softWrap: true,
+              title,
+            style: TextStyle(
+              fontSize: Responsive.isMobile(context)? 12 : 16,
+              color: Colors.black
+            ),),
+          )
         ],
       ),
     );

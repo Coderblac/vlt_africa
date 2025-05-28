@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vlt_africa/botton.dart';
+import 'package:vlt_africa/dashboard.dart';
 import 'package:vlt_africa/helper.dart';
 import 'package:vlt_africa/register_page.dart';
 
@@ -39,6 +40,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: Text('Dashboard', style: TextStyle(color: Colors.black)),
                   onPressed: () {
                     // Navigate to dashboard
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashboard()),
+                    );
                   },
                 ),
                 HelperButton(

@@ -10,6 +10,7 @@ import 'package:vlt_africa/how_vlt_works.dart';
 import 'package:vlt_africa/register_page.dart';
 import 'package:vlt_africa/responsive.dart';
 import 'package:vlt_africa/team.dart';
+import 'package:vlt_africa/what_you_get.dart';
 import 'package:vlt_africa/why_choose_vlt.dart';
 
 class NewHomePage extends StatelessWidget {
@@ -22,11 +23,11 @@ class NewHomePage extends StatelessWidget {
           ? _buildMobileDrawer(context: context)
           : null,
       appBar: AppBar(
-        title: Image.asset(
+        leading: Image.asset(
           'assets/logo/logo_v1.jpeg',
           height: 60,
           width: 100,
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.cover,
         ),
         centerTitle: false,
         actions: !Responsive.isMobile(context) ? [CustomAppBar()] : [],
@@ -41,22 +42,28 @@ class NewHomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          flex: Responsive.isTablet(context) ? 1 : 8,
+                          flex: Responsive.isTablet(context) ? 2 : 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              WhyChooseVlt(),
-                              SizedBox(height: 20), 
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: WhyChooseVlt(),
+                              ),
                               Team(),                             ],
                           ),
                         ),
-                        if (!Responsive.isMobile(context))
                           Expanded(
-                            flex: Responsive.isTablet(context) ? 2 : 3,
+                            flex: 1,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                HowVltWorks(),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 20),
+                                  child: HowVltWorks(),
+                                ),
+                                if(Responsive.isDesktop(context))
+                                WhatYouGet()
                               ],
                             ),
                           ),
